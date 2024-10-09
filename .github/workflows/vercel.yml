@@ -1,0 +1,29 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+on:
+  push:
+    branches: [PRODUCTION]
+
+jobs:
+  clone:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          git clone https://user:$GITHUB_TOKEN@github.com/Ebook4Gen/app-ebook4gen
+          cd app-ebook4gen
+          git config user.name "codaisa"
+          git config user.email "safilhoelzevirsafilho@gmail.com"
+          git checkout main
+          cd ./.github
+          cd ./workflows
+          rm vercel.yml
+          git add .
+          git commit -m "feat: updated main repo"
+          git remote -v # Prints:
+          # origin ***github.com/owner/my-repo.git (fetch)
+          # origin ***github.com/owner/my-repo.git (push)
+          git push https://user:$GITHUB_TOKEN@github.com/codaisa/clone-app-ebook4gen main -f
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_TODEPLOY }}
