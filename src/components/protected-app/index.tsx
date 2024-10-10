@@ -7,7 +7,7 @@ const ProtectedApp: React.FC<Props> = ({ children }) => {
   if (!isInitialized) {
     return (
       <div className="w-screen h-screen flex items-center justify-center">
-        <span>Carregando</span>;
+        <span>Carregando</span>
       </div>
     );
   }
