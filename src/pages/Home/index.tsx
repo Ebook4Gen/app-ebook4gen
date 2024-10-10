@@ -1,19 +1,16 @@
-import React, { useTransition } from "react";
+import React from "react";
 import reactLogo from "../../assets/react.svg";
 import { useAuth } from "../../providers/SecurityProvider";
 import UserService from "../../services/user.service";
 import { toast } from "react-toastify";
 
 const HomePage: React.FC = () => {
-  const [loading, startTransition] = useTransition();
   const { user, logout } = useAuth();
 
-  const handleCheckApi = () => {
+  const handleCheckApi = async () => {
     try {
-      startTransition(async () => {
-        await UserService.CheckAuth();
-        toast.success("Você está autenticado", { position: "bottom-left" });
-      });
+      await UserService.CheckAuth();
+      toast.success("Você está autenticado", { position: "bottom-left" });
     } catch (err) {
       toast.error("Usuário não autenticado.");
       console.log(err);
@@ -32,11 +29,9 @@ const HomePage: React.FC = () => {
         Logout
       </button>
 
-      {!loading && (
-        <button className="mt-2" onClick={handleCheckApi}>
-          Autenticar
-        </button>
-      )}
+      <button className="mt-2" onClick={handleCheckApi}>
+        Autenticar
+      </button>
     </div>
   );
 };
