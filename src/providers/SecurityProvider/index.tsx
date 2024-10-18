@@ -36,6 +36,8 @@ const SecurityProvider: React.FC<SecurityProviderProps> = ({ children }) => {
     window.accessToken = keycloak.token;
   }, [keycloak.token]);
 
+  console.log(keycloak?.idTokenParsed);
+
   const isAuthenticated =
     !!keycloak.authenticated && keycloak?.idTokenParsed?.email.length;
 

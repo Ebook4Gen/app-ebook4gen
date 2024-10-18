@@ -4,14 +4,12 @@ import { ProtectedRouter } from "../../protected-route";
 import { PERMISSIONS } from "../../../permissions";
 
 const ProtectedLayout: React.FC = () => {
-  return (
-    <ProtectedRouter
-      requiredClientRoles={
-        import.meta.env.NODE_ENV === "dev" ? [PERMISSIONS.ENVIROMENT] : []
-      }
-    >
+  return import.meta.env.VITE_KEYCLOAK_NODE_ENV === "stg" ? (
+    <ProtectedRouter requiredClientRoles={[PERMISSIONS.ENVIROMENT]}>
       <Outlet />
     </ProtectedRouter>
+  ) : (
+    <Outlet />
   );
 };
 
