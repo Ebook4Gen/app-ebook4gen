@@ -12,7 +12,9 @@ export const ProtectedRouter: React.FC<Props> = ({
     requiredClientRoles &&
     !requiredClientRoles?.some((role) => hasClientRole(role))
   ) {
-    return <h1>{unauthorizedMessage || "unauthorized"}</h1>;
+    return (
+      <h1>{unauthorizedMessage || "Você não tem acesso a este recurso"}</h1>
+    );
   }
 
   return children;
