@@ -18,7 +18,8 @@ jobs:
           git checkout staging
           cd ./.github
           cd ./workflows
-          rm vercel.yml
+          rm mirror-stg.yml
+          rm mirror-prd.yml
           git add .
           git commit -m "feat: updated staging repo"
           git remote -v # Prints:
