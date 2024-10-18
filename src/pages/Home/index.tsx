@@ -23,7 +23,9 @@ const HomePage: React.FC = () => {
         <img src={reactLogo} className="w-28 h-28" alt="React logo" />
       </a>
 
-      <span className="mt-8">Olá, {user?.given_name}</span>
+      <span className="mt-8">
+        Olá, {user?.given_name}, você está no ambiente STG
+      </span>
 
       <button className="mt-2" onClick={logout}>
         Logout
