@@ -1,5 +1,6 @@
 import jsPDF from "jspdf";
 import { useState } from "react";
+import { useAuth } from "../../providers/SecurityProvider";
 
 import configIcon from '../../../public/gear.png'
 import premiumIcon from '../../../public/premium.png'
@@ -11,20 +12,32 @@ import sparkleIcon from '../../../public/sparkle.png'
 import graduationCap from '../../../public/graduation.png'
 import arrowTopIcon from '../../../public/arrowTop.png'
 import PremiumModal from "../premium-modal";
+import LoadingModal from "../loading-modal";
 
 const GenerateEbook = () => {
+  const { user } = useAuth();
+
   const [summary, setSummary] = useState("");
   const [pages, setPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [showTips, setShowTips] = useState(true);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isLoadingModalOpen, setLoadingModalOpen] = useState(false);
 
   const handleOpenModal = () => {
     setModalOpen(true);
   };
 
   const handleCloseModal = () => {
-    setModalOpen(false); 
+    setModalOpen(false);
+  };
+
+  const handleOpenLoadingModal = () => {
+    setLoadingModalOpen(true); // Abre o modal de carregamento
+  };
+
+  const handleCloseLoadingModal = () => {
+    setLoadingModalOpen(false); // Fecha o modal de carregamento
   };
 
   const toggleTips = () => {
@@ -46,6 +59,7 @@ const GenerateEbook = () => {
   };
 
   const handleSubmit = async () => {
+    handleOpenLoadingModal();
     if (summary) {
       setLoading(true);
       console.log("Resumo:", summary);
@@ -53,7 +67,10 @@ const GenerateEbook = () => {
       console.log("Chamando a API da OpenAi...");
     }
     setLoading(false);
-    generatePDF("conteudoRetornadoDaOpenAi");
+    setTimeout(() => {
+      generatePDF("conteudoRetornadoDaOpenAi");
+      handleCloseLoadingModal(); // Fecha o modal de carregamento
+    }, 2000);
   };
 
   return (
@@ -73,7 +90,7 @@ const GenerateEbook = () => {
         </div>
 
         <h1 className="text-[40px] font-bold text-gray-800 mb-6 ">
-          Olá {`{username}`}, sobre o que
+          Olá {user?.given_name}, sobre o que
           <br className="hidden md:block" />
           vamos escrever hoje?
         </h1>
@@ -106,27 +123,24 @@ const GenerateEbook = () => {
                     onClick={() => handlePagesChange(false)}
                     className="bg-transparent text-[#686868] border-none p-2"
                   >
-                    <img src={minusIcon} className="w-5 h-5" alt="Ícone de subtração" />
+                    <img src={minusIcon} className="w-5 h-5" alt="Minus Icon" />
                   </button>
                   <span className="px-4 font-bold">{pages}</span>
                   <button
                     onClick={() => handlePagesChange(true)}
                     className="bg-transparent text-[#686868] border-none p-2"
                   >
-                    <img src={plusIcon} className="w-5 h-5" alt="Ícone de soma" />
+                    <img src={plusIcon} className="w-5 h-5" alt="Plus Icon" />
                   </button>
                 </div>
-
 
                 <button
                   onClick={handleSubmit}
                   className="bg-[#E30100] flex justify-center items-center gap-2 text-white font-bold text-base px-6 py-3 rounded-full w-full border-none hover:bg-red-700 transition whitespace-nowrap"
-                  disabled={loading}
                 >
-                  <img src={sparkleIcon} className="w-5 h-5 inline-block" alt="Ícone de uma pasta" />
+                  <img src={sparkleIcon} className="w-5 h-5 inline-block" alt="Sparkle Icon" />
                   <span className="whitespace-nowrap">{loading ? "Gerando..." : "Criar texto"}</span>
                 </button>
-
               </div>
             </div>
           </div>
@@ -190,6 +204,7 @@ const GenerateEbook = () => {
         </div>
       </div>
       <PremiumModal isOpen={isModalOpen} onClose={handleCloseModal} />
+      <LoadingModal isOpen={isLoadingModalOpen} onCancel={handleCloseLoadingModal} />
     </div>
   );
 };
