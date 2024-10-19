@@ -10,12 +10,22 @@ import plusIcon from '../../../public/plus.png'
 import sparkleIcon from '../../../public/sparkle.png'
 import graduationCap from '../../../public/graduation.png'
 import arrowTopIcon from '../../../public/arrowTop.png'
+import PremiumModal from "../premium-modal";
 
 const GenerateEbook = () => {
   const [summary, setSummary] = useState("");
   const [pages, setPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [showTips, setShowTips] = useState(true);
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false); 
+  };
 
   const toggleTips = () => {
     setShowTips(!showTips);
@@ -41,7 +51,6 @@ const GenerateEbook = () => {
       console.log("Resumo:", summary);
       console.log("Número de páginas:", pages);
       console.log("Chamando a API da OpenAi...");
-      // Aqui você chamaria a OpenAI para gerar o conteúdo do PDF com base no resumo.
     }
     setLoading(false);
     generatePDF("conteudoRetornadoDaOpenAi");
@@ -49,12 +58,11 @@ const GenerateEbook = () => {
 
   return (
     <div className="min-h-screen w-full gap-10 flex justify-between py-[56px] px-[116px]">
-      {/* Cabeçalho com botão premium */}
       <div className="flex flex-col items-start w-full mb-6 min-h-screen">
         <div className="flex w-full justify-between items-center mb-14">
           <img src={userIcon} className="w-12 h-12" alt="React logo" />
           <div className="flex items-center space-x-4">
-            <button className="flex items-center gap-2 px-4 py-3 bg-[#E30100] border-none hover:bg-red-700 rounded-full text-white font-bold text-base">
+            <button onClick={handleOpenModal} className="flex items-center gap-2 px-4 py-3 bg-[#E30100] border-none hover:bg-red-700 rounded-full text-white font-bold text-base">
               <img src={premiumIcon} className="w-5 h-5" alt="React logo" />
               Assine o Premium
             </button>
@@ -181,7 +189,7 @@ const GenerateEbook = () => {
           </div>
         </div>
       </div>
-
+      <PremiumModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </div>
   );
 };
