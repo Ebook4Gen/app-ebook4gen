@@ -1,11 +1,9 @@
-import GenerateEbook from '../../components/GenerateEbook';
+import GenerateEbook from '../../components/generate-ebook';
 
 const EbookPage = () => {
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <div className="w-full max-w-lg px-4">
-        <GenerateEbook />
-      </div>
+    <div className="w-screen h-screen flex flex-col items-center justify-center bg-[#f1f0ee]">
+      <GenerateEbook />
     </div>
   );
 };
