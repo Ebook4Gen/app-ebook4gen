@@ -2,15 +2,15 @@ import jsPDF from "jspdf";
 import { useState } from "react";
 import { useAuth } from "../../providers/SecurityProvider";
 
-import configIcon from '../../../public/gear.png'
-import premiumIcon from '../../../public/premium.png'
-import userIcon from '../../../public/user.png'
-import fileIcon from '../../../public/file.png'
-import minusIcon from '../../../public/minus.png'
-import plusIcon from '../../../public/plus.png'
-import sparkleIcon from '../../../public/sparkle.png'
-import graduationCap from '../../../public/graduation.png'
-import arrowTopIcon from '../../../public/arrowTop.png'
+import configIcon from "../../../public/gear.png";
+import premiumIcon from "../../../public/premium.png";
+import userIcon from "../../../public/user.png";
+import fileIcon from "../../../public/file.png";
+import minusIcon from "../../../public/minus.png";
+import plusIcon from "../../../public/plus.png";
+import sparkleIcon from "../../../public/sparkle.png";
+import graduationCap from "../../../public/graduation.png";
+import arrowTopIcon from "../../../public/arrowTop.png";
 import PremiumModal from "../premium-modal";
 import LoadingModal from "../loading-modal";
 
@@ -79,7 +79,10 @@ const GenerateEbook = () => {
         <div className="flex w-full justify-between items-center mb-14">
           <img src={userIcon} className="w-12 h-12" alt="React logo" />
           <div className="flex items-center space-x-4">
-            <button onClick={handleOpenModal} className="flex items-center gap-2 px-4 py-3 bg-[#E30100] border-none hover:bg-red-700 rounded-full text-white font-bold text-base">
+            <button
+              onClick={handleOpenModal}
+              className="flex items-center gap-2 px-4 py-3 bg-[#E30100] border-none hover:bg-red-700 rounded-full text-white font-bold text-base"
+            >
               <img src={premiumIcon} className="w-5 h-5" alt="React logo" />
               Assine o Premium
             </button>
@@ -113,7 +116,11 @@ const GenerateEbook = () => {
 
             <div className="flex items-center justify-between mb-4">
               <div className="flex gap-3 items-center">
-                <img src={fileIcon} className="w-5 h-5" alt="Ícone de uma pasta" />
+                <img
+                  src={fileIcon}
+                  className="w-5 h-5"
+                  alt="Ícone de uma pasta"
+                />
                 <label className="text-lg font-medium">Nº de páginas:</label>
               </div>
 
@@ -138,8 +145,14 @@ const GenerateEbook = () => {
                   onClick={handleSubmit}
                   className="bg-[#E30100] flex justify-center items-center gap-2 text-white font-bold text-base px-6 py-3 rounded-full w-full border-none hover:bg-red-700 transition whitespace-nowrap"
                 >
-                  <img src={sparkleIcon} className="w-5 h-5 inline-block" alt="Sparkle Icon" />
-                  <span className="whitespace-nowrap">{loading ? "Gerando..." : "Criar texto"}</span>
+                  <img
+                    src={sparkleIcon}
+                    className="w-5 h-5 inline-block"
+                    alt="Sparkle Icon"
+                  />
+                  <span className="whitespace-nowrap">
+                    {loading ? "Gerando..." : "Criar texto"}
+                  </span>
                 </button>
               </div>
             </div>
@@ -147,19 +160,30 @@ const GenerateEbook = () => {
         </div>
       </div>
 
-
       <div className="w-full p-4">
         <div
           className="flex justify-between items-center cursor-pointer"
           onClick={toggleTips}
         >
           <div className="flex items-center gap-3">
-            <img src={graduationCap} className="w-5 h-5 inline-block" alt="Ícone de uma pasta" />
+            <img
+              src={graduationCap}
+              className="w-5 h-5 inline-block"
+              alt="Ícone de uma pasta"
+            />
             <h2 className="text-xl font-semibold">
               Saiba como gerar textos melhores:
             </h2>
           </div>
-          <img src={arrowTopIcon} className={showTips ? "w-5 h-5 inline-block" : "w-5 h-5 inline-block rotate-180"} alt="Ícone de uma pasta" />
+          <img
+            src={arrowTopIcon}
+            className={
+              showTips
+                ? "w-5 h-5 inline-block"
+                : "w-5 h-5 inline-block rotate-180"
+            }
+            alt="Ícone de uma pasta"
+          />
         </div>
 
         <div className="pt-4 pb-6">
@@ -167,8 +191,9 @@ const GenerateEbook = () => {
         </div>
 
         <div
-          className={`transition-all duration-500 ease-in-out transform ${showTips ? "max-h-full opacity-100" : "max-h-0 opacity-0"
-            } overflow-hidden`}
+          className={`transition-all duration-500 ease-in-out transform ${
+            showTips ? "max-h-full opacity-100" : "max-h-0 opacity-0"
+          } overflow-hidden`}
         >
           <div className="grid grid-cols-2 gap-4 mt-4">
             <div className="bg-white p-3 rounded-lg shadow">
@@ -178,33 +203,49 @@ const GenerateEbook = () => {
                   Essencial
                 </button>
               </div>
-              <p className="text-gray-600">Comece com um verbo ou comando e descreva a tarefa...</p>
+              <p className="text-gray-600">
+                Comece com um verbo ou comando e descreva a tarefa...
+              </p>
             </div>
             <div className="bg-white p-3 rounded-lg shadow">
               <span className="font-bold">Forneça contexto</span>
-              <p className="text-gray-600">Descreva qual é o objetivo do texto e os problemas a se solucionar...</p>
+              <p className="text-gray-600">
+                Descreva qual é o objetivo do texto e os problemas a se
+                solucionar...
+              </p>
             </div>
             <div className="bg-white p-3 rounded-lg shadow">
               <span className="font-bold">Defina o público</span>
-              <p className="text-gray-600">Escolha um público no qual a linguagem do livro será guiada...</p>
+              <p className="text-gray-600">
+                Escolha um público no qual a linguagem do livro será guiada...
+              </p>
             </div>
             <div className="bg-white p-3 rounded-lg shadow">
               <span className="font-bold">Forneça objetivos</span>
-              <p className="text-gray-600">Quais tópicos devem ser contemplados e comprovados...</p>
+              <p className="text-gray-600">
+                Quais tópicos devem ser contemplados e comprovados...
+              </p>
             </div>
             <div className="bg-white p-3 rounded-lg shadow">
               <span className="font-bold">Defina restrições</span>
-              <p className="text-gray-600">Seja específico sobre o resultado que você deseja obter...</p>
+              <p className="text-gray-600">
+                Seja específico sobre o resultado que você deseja obter...
+              </p>
             </div>
             <div className="bg-white p-3 rounded-lg shadow">
               <span className="font-bold">Forneça um tom</span>
-              <p className="text-gray-600">Defina se o tom do texto deve ser sério ou divertido...</p>
+              <p className="text-gray-600">
+                Defina se o tom do texto deve ser sério ou divertido...
+              </p>
             </div>
           </div>
         </div>
       </div>
       <PremiumModal isOpen={isModalOpen} onClose={handleCloseModal} />
-      <LoadingModal isOpen={isLoadingModalOpen} onCancel={handleCloseLoadingModal} />
+      <LoadingModal
+        isOpen={isLoadingModalOpen}
+        onCancel={handleCloseLoadingModal}
+      />
     </div>
   );
 };
