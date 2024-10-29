@@ -1,4 +1,5 @@
 export const ROUTES = {
   home: "/",
-  ebook: "/ebook"
+  ebook: "/ebook",
+  pdf: "/pdf"
 };

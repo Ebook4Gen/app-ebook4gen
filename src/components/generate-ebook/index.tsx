@@ -10,6 +10,7 @@ import minusIcon from '../../../public/minus.png'
 import plusIcon from '../../../public/plus.png'
 import sparkleIcon from '../../../public/sparkle.png'
 import graduationCap from '../../../public/graduation.png'
+import clockIcon from '../../../public/clockWhite.png'
 import arrowTopIcon from '../../../public/arrowTop.png'
 import PremiumModal from "../premium-modal";
 import LoadingModal from "../loading-modal";
@@ -75,7 +76,7 @@ const GenerateEbook = () => {
 
   return (
     <div className="min-h-screen w-full gap-10 flex justify-between py-[56px] px-[116px]">
-      <div className="flex flex-col items-start w-full mb-6 min-h-screen">
+      <div className="flex flex-col items-start w-full mb-6 h-[100%]">
         <div className="flex w-full justify-between items-center mb-14">
           <img src={userIcon} className="w-12 h-12" alt="React logo" />
           <div className="flex items-center space-x-4">
@@ -89,20 +90,22 @@ const GenerateEbook = () => {
           </div>
         </div>
 
-        <h1 className="text-[40px] font-bold text-gray-800 mb-6 ">
-          Olá {user?.given_name}, sobre o que
-          <br className="hidden md:block" />
-          vamos escrever hoje?
-        </h1>
+        <div className="h-[100%] flex flex-col justify-between">
+          <div>
+            <h1 className="text-[40px] font-bold text-[#161616] mb-6">
+              Olá {user?.given_name}, sobre o que
+              <br className="hidden md:block" />
+              vamos escrever hoje?
+            </h1>
 
-        <p className="text-lg text-gray-600 w-full mb-96">
-          Use o campo abaixo para descrever um pequeno resumo sobre o
-          <br className="hidden md:block" />
-          assunto que seu e-book irá contemplar.
-        </p>
+            <p className="text-lg text-gray-600 w-full">
+              Use o campo abaixo para descrever um pequeno resumo sobre o
+              <br className="hidden md:block" />
+              assunto que seu e-book irá contemplar.
+            </p>
+          </div>
 
-        <div className="flex w-full justify-end items-end">
-          <div className="w-full mb-auto">
+          <div className="w-full">
             <textarea
               value={summary}
               onChange={handleSummaryChange}
@@ -111,7 +114,7 @@ const GenerateEbook = () => {
               rows={5}
             />
 
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between">
               <div className="flex gap-3 items-center">
                 <img src={fileIcon} className="w-5 h-5" alt="Ícone de uma pasta" />
                 <label className="text-lg font-medium">Nº de páginas:</label>
@@ -139,14 +142,15 @@ const GenerateEbook = () => {
                   className="bg-[#E30100] flex justify-center items-center gap-2 text-white font-bold text-base px-6 py-3 rounded-full w-full border-none hover:bg-red-700 transition whitespace-nowrap"
                 >
                   <img src={sparkleIcon} className="w-5 h-5 inline-block" alt="Sparkle Icon" />
-                  <span className="whitespace-nowrap">{loading ? "Gerando..." : "Criar texto"}</span>
+                  <span className="whitespace-nowrap">
+                    {loading ? "Gerando..." : "Criar texto"}
+                  </span>
                 </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-
 
       <div className="w-full p-4">
         <div
@@ -167,40 +171,57 @@ const GenerateEbook = () => {
         </div>
 
         <div
-          className={`transition-all duration-500 ease-in-out transform ${showTips ? "max-h-full opacity-100" : "max-h-0 opacity-0"
+          className={`transition-all duration-500 ease-in-out transform mb-6 ${showTips ? "max-h-full opacity-100" : "max-h-0 opacity-0"
             } overflow-hidden`}
         >
           <div className="grid grid-cols-2 gap-4 mt-4">
-            <div className="bg-white p-3 rounded-lg shadow">
+            <div className="bg-white p-3 rounded-lg shadow space-y-2">
               <div className="flex items-center justify-between">
-                <span className="font-bold">Defina objetivos</span>
+                <span className="font-medium text-base text-[#161616]">Defina objetivos</span>
                 <button className="flex px-3 py-[3px] bg-[#E30100] border-none hover:bg-red-700 rounded-full text-xs text-white font-medium">
                   Essencial
                 </button>
               </div>
-              <p className="text-gray-600">Comece com um verbo ou comando e descreva a tarefa...</p>
+              <p className="text-[#686868]">Comece com um verbo ou comando e descreva a tarefa...</p>
             </div>
-            <div className="bg-white p-3 rounded-lg shadow">
-              <span className="font-bold">Forneça contexto</span>
-              <p className="text-gray-600">Descreva qual é o objetivo do texto e os problemas a se solucionar...</p>
+            <div className="bg-white p-3 rounded-lg shadow space-y-2">
+              <span className="font-medium text-base text-[#161616]">Forneça contexto</span>
+              <p className="text-[#686868]">Descreva qual é o objetivo do texto e os problemas a se solucionar...</p>
             </div>
-            <div className="bg-white p-3 rounded-lg shadow">
-              <span className="font-bold">Defina o público</span>
-              <p className="text-gray-600">Escolha um público no qual a linguagem do livro será guiada...</p>
+            <div className="bg-white p-3 rounded-lg shadow space-y-2">
+              <span className="font-medium text-base text-[#161616]">Defina o público</span>
+              <p className="text-[#686868]">Escolha um público no qual a linguagem do livro será guiada...</p>
             </div>
-            <div className="bg-white p-3 rounded-lg shadow">
-              <span className="font-bold">Forneça objetivos</span>
-              <p className="text-gray-600">Quais tópicos devem ser contemplados e comprovados...</p>
+            <div className="bg-white p-3 rounded-lg shadow space-y-2">
+              <span className="font-medium text-base text-[#161616]">Forneça objetivos</span>
+              <p className="text-[#686868]">Quais tópicos devem ser contemplados e comprovados...</p>
             </div>
-            <div className="bg-white p-3 rounded-lg shadow">
-              <span className="font-bold">Defina restrições</span>
-              <p className="text-gray-600">Seja específico sobre o resultado que você deseja obter...</p>
+            <div className="bg-white p-3 rounded-lg shadow space-y-2">
+              <span className="font-medium text-base text-[#161616]">Defina restrições</span>
+              <p className="text-[#686868]">Seja específico sobre o resultado que você deseja obter...</p>
             </div>
-            <div className="bg-white p-3 rounded-lg shadow">
-              <span className="font-bold">Forneça um tom</span>
-              <p className="text-gray-600">Defina se o tom do texto deve ser sério ou divertido...</p>
+            <div className="bg-white p-3 rounded-lg shadow space-y-2">
+              <span className="font-medium text-base text-[#161616]">Forneça um tom</span>
+              <p className="text-[#686868]">Defina se o tom do texto deve ser sério ou divertido...</p>
             </div>
           </div>
+        </div>
+
+        <div
+          className="flex justify-between items-center cursor-pointer"
+        // onClick={toggleTips}
+        >
+          <div className="flex items-center gap-3">
+            <img src={clockIcon} className="w-5 h-5 inline-block" alt="Ícone de uma pasta" />
+            <h2 className="text-xl font-medium text-[#E3E2E1]">
+              Seus e-books recentes:
+            </h2>
+          </div>
+          <img src={arrowTopIcon} className={showTips ? "w-5 h-5 inline-block" : "w-5 h-5 inline-block rotate-180"} alt="Ícone de uma pasta" />
+        </div>
+
+        <div className="pt-4 pb-6">
+          <hr />
         </div>
       </div>
       <PremiumModal isOpen={isModalOpen} onClose={handleCloseModal} />

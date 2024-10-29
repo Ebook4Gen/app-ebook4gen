@@ -3,6 +3,7 @@ import ProtectedLayout from "../components/layouts/protected";
 import HomePage from "../pages/Home";
 import { ROUTES } from "./paths";
 import EbookPage from "../pages/Ebook";
+import PDFPages from "../pages/PDF";
 
 export const router = createBrowserRouter([
   {
@@ -11,6 +12,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: ROUTES.ebook, element: <EbookPage /> },
+      { path: ROUTES.pdf, element: <PDFPages /> },
     ],
 
   },
