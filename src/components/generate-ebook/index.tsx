@@ -80,7 +80,10 @@ const GenerateEbook = () => {
         <div className="flex w-full justify-between items-center mb-14">
           <img src={userIcon} className="w-12 h-12" alt="React logo" />
           <div className="flex items-center space-x-4">
-            <button onClick={handleOpenModal} className="flex items-center gap-2 px-4 py-3 bg-[#E30100] border-none hover:bg-red-700 rounded-full text-white font-bold text-base">
+            <button
+              onClick={handleOpenModal}
+              className="flex items-center gap-2 px-4 py-3 bg-[#E30100] border-none hover:bg-red-700 rounded-full text-white font-bold text-base"
+            >
               <img src={premiumIcon} className="w-5 h-5" alt="React logo" />
               Assine o Premium
             </button>
@@ -116,7 +119,11 @@ const GenerateEbook = () => {
 
             <div className="flex items-center justify-between">
               <div className="flex gap-3 items-center">
-                <img src={fileIcon} className="w-5 h-5" alt="Ícone de uma pasta" />
+                <img
+                  src={fileIcon}
+                  className="w-5 h-5"
+                  alt="Ícone de uma pasta"
+                />
                 <label className="text-lg font-medium">Nº de páginas:</label>
               </div>
 
@@ -142,6 +149,7 @@ const GenerateEbook = () => {
                   className="bg-[#E30100] flex justify-center items-center gap-2 text-white font-bold text-base px-6 py-3 rounded-full w-full border-none hover:bg-red-700 transition whitespace-nowrap"
                 >
                   <img src={sparkleIcon} className="w-5 h-5 inline-block" alt="Sparkle Icon" />
+
                   <span className="whitespace-nowrap">
                     {loading ? "Gerando..." : "Criar texto"}
                   </span>
@@ -158,12 +166,24 @@ const GenerateEbook = () => {
           onClick={toggleTips}
         >
           <div className="flex items-center gap-3">
-            <img src={graduationCap} className="w-5 h-5 inline-block" alt="Ícone de uma pasta" />
+            <img
+              src={graduationCap}
+              className="w-5 h-5 inline-block"
+              alt="Ícone de uma pasta"
+            />
             <h2 className="text-xl font-semibold">
               Saiba como gerar textos melhores:
             </h2>
           </div>
-          <img src={arrowTopIcon} className={showTips ? "w-5 h-5 inline-block" : "w-5 h-5 inline-block rotate-180"} alt="Ícone de uma pasta" />
+          <img
+            src={arrowTopIcon}
+            className={
+              showTips
+                ? "w-5 h-5 inline-block"
+                : "w-5 h-5 inline-block rotate-180"
+            }
+            alt="Ícone de uma pasta"
+          />
         </div>
 
         <div className="pt-4 pb-6">
@@ -183,7 +203,7 @@ const GenerateEbook = () => {
                 </button>
               </div>
               <p className="text-[#686868]">Comece com um verbo ou comando e descreva a tarefa...</p>
-            </div>
+            </div >
             <div className="bg-white p-3 rounded-lg shadow space-y-2">
               <span className="font-medium text-base text-[#161616]">Forneça contexto</span>
               <p className="text-[#686868]">Descreva qual é o objetivo do texto e os problemas a se solucionar...</p>
@@ -203,9 +223,10 @@ const GenerateEbook = () => {
             <div className="bg-white p-3 rounded-lg shadow space-y-2">
               <span className="font-medium text-base text-[#161616]">Forneça um tom</span>
               <p className="text-[#686868]">Defina se o tom do texto deve ser sério ou divertido...</p>
+
             </div>
-          </div>
-        </div>
+          </div >
+        </div >
 
         <div
           className="flex justify-between items-center cursor-pointer"
@@ -223,10 +244,13 @@ const GenerateEbook = () => {
         <div className="pt-4 pb-6">
           <hr />
         </div>
-      </div>
+      </div >
       <PremiumModal isOpen={isModalOpen} onClose={handleCloseModal} />
-      <LoadingModal isOpen={isLoadingModalOpen} onCancel={handleCloseLoadingModal} />
-    </div>
+      <LoadingModal
+        isOpen={isLoadingModalOpen}
+        onCancel={handleCloseLoadingModal}
+      />
+    </div >
   );
 };
 

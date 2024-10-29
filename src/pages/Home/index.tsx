@@ -3,9 +3,12 @@ import reactLogo from "../../assets/react.svg";
 import { useAuth } from "../../providers/SecurityProvider";
 import UserService from "../../services/user.service";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../router/paths";
 
 const HomePage: React.FC = () => {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   const handleCheckApi = async () => {
     try {
@@ -29,6 +32,10 @@ const HomePage: React.FC = () => {
 
       <button className="mt-2" onClick={logout}>
         Logout
+      </button>
+
+      <button className="mt-2" onClick={() => navigate(ROUTES.ebook)}>
+        APP
       </button>
 
       <button className="mt-2" onClick={handleCheckApi}>
